@@ -29,3 +29,7 @@ variable "sku" {
 variable "vm_version" {
   type = string
 }
+
+variable "userdata_file" {
+  type = string
+}

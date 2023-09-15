@@ -1,0 +1,7 @@
+location         = "eastus"
+vm_size          = "Standard_B2s"
+vm_publisher     = "SUSE"
+vm_offer         = "sles-15-sp5"
+vm_sku           = "gen1"
+vm_version       = "latest"
+vm_userdata_file = "userdata-suse15.sh"

@@ -35,7 +35,7 @@ resource "azurerm_linux_virtual_machine" "main" {
   admin_password        = "P@ssw0rd.123"
   network_interface_ids = [azurerm_network_interface.main.id]
 
-  custom_data = filebase64("${path.module}/userdata.sh")
+  custom_data = filebase64("${path.module}/${var.userdata_file}")
 
   identity {
     type = "SystemAssigned"

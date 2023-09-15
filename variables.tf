@@ -21,3 +21,7 @@ variable "vm_sku" {
 variable "vm_version" {
   type = string
 }
+
+variable "vm_userdata_file" {
+  type = string
+}

@@ -27,13 +27,14 @@ module "network" {
 }
 
 module "vm_linux" {
-  source     = "./modules/suse"
-  location   = azurerm_resource_group.main.location
-  group      = azurerm_resource_group.main.name
-  size       = var.vm_size
-  subnet     = module.network.subnet_001_id
-  publisher  = var.vm_publisher
-  offer      = var.vm_offer
-  sku        = var.vm_sku
-  vm_version = var.vm_version
+  source        = "./modules/suse"
+  location      = azurerm_resource_group.main.location
+  group         = azurerm_resource_group.main.name
+  size          = var.vm_size
+  subnet        = module.network.subnet_001_id
+  publisher     = var.vm_publisher
+  offer         = var.vm_offer
+  sku           = var.vm_sku
+  vm_version    = var.vm_version
+  userdata_file = var.vm_userdata_file
 }
