@@ -12,5 +12,5 @@ sudo systemctl enable docker.service
 sudo systemctl start docker.service
 
 # Docker Compose
-SUSEConnect -p PackageHub/15.5/x86_64
-zypper install docker-compose
+sudo SUSEConnect -p PackageHub/15.5/x86_64
+sudo zypper install -y docker-compose
