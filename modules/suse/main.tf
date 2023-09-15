@@ -22,12 +22,16 @@ resource "azurerm_network_interface" "main" {
   }
 }
 
+locals {
+  admin_username = "suseadmin"
+}
+
 resource "azurerm_linux_virtual_machine" "main" {
   name                  = "vm-suse"
   resource_group_name   = var.group
   location              = var.location
   size                  = var.size
-  admin_username        = "suseadmin"
+  admin_username        = local.admin_username
   admin_password        = "P@ssw0rd.123"
   network_interface_ids = [azurerm_network_interface.main.id]
 
@@ -38,8 +42,8 @@ resource "azurerm_linux_virtual_machine" "main" {
   }
 
   admin_ssh_key {
-    username   = "suseadmin"
-    public_key = file("~/.ssh/id_rsa.pub")
+    username   = local.admin_username
+    public_key = file("${path.module}/id_rsa.pub")
   }
 
   os_disk {
@@ -52,6 +56,6 @@ resource "azurerm_linux_virtual_machine" "main" {
     publisher = var.publisher
     offer     = var.offer
     sku       = var.sku
-    version   = var.version
+    version   = var.vm_version
   }
 }
