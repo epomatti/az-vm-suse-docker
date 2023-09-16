@@ -2,6 +2,8 @@
 
 SUSE Linux Enterprise Server deployment with Docker Compose on Azure VMs.
 
+## Deployment
+
 Generate the temporary keys to be used:
 
 ```sh
