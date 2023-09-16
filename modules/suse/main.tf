@@ -59,3 +59,12 @@ resource "azurerm_linux_virtual_machine" "main" {
     version   = var.vm_version
   }
 }
+
+### Adding some permissions avoid this error message when using the CLI:
+### az login --identity
+### No access was configured for the VM, hence no subscriptions were found. If this is expected, use '--allow-no-subscriptions' to have tenant level access.
+# resource "azurerm_role_assignment" "jumpbox_batch" {
+#   scope                = var.batch_account_id
+#   role_definition_name = "Contributor"
+#   principal_id         = azurerm_linux_virtual_machine.main.identity[0].principal_id
+# }

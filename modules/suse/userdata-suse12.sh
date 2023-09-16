@@ -4,6 +4,7 @@ sudo zypper refresh
 
 # Azure CLI
 sudo zypper install -y azure-cli
+sudo az extension add --name azure-devops -y
 
 # Docker
 sudo SUSEConnect -p sle-module-containers/12/x86_64 -r ''

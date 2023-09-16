@@ -36,6 +36,19 @@ Check `cloud-init`:
 cloud-init status
 ```
 
+## Azure Artifacts
+
+When logged into the VM, login with the VM Managed Identity:
+
+```sh
+az login --identity --allow-no-subscriptions
+```
+
+The Azure DevOps Extension for the CLI is already installed via `userdata`.
+
+
+
+
 ---
 
 ### Clean-up
