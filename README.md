@@ -1,4 +1,4 @@
-# Azure VM: SLES + Docker Compose
+# Azure VM: SLES + Docker + Azure Artifacts
 
 SUSE Linux Enterprise Server deployment with Docker Compose on Azure VMs.
 
