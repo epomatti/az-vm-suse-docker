@@ -46,7 +46,9 @@ Create an Artifact Feed of type Universal Packages in an ADO project.
 
 <img src=".assets/feed.png" width=400 />
 
+You must give [`Contributor`][1] permissions for the pipeline to publish packages. Check the [Pipelines permissions][2] sections for more information.
 
+Now create a pipeline on ADO using [azure-pipeline.yaml](./azure-pipeline.yaml) as a template. Add the variables `projectName` and `feedName` accordingly.
 
 ### VM Identity
 
@@ -68,3 +70,7 @@ The Azure DevOps Extension for the CLI is already installed via `userdata`.
 ```
 terraform destroy -auto-approve
 ```
+
+
+[1]: https://learn.microsoft.com/en-us/azure/devops/artifacts/feeds/feed-permissions?view=azure-devops#permissions-table
+[2]: https://learn.microsoft.com/en-us/azure/devops/artifacts/feeds/feed-permissions?view=azure-devops#pipelines-permissions
