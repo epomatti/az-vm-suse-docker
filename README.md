@@ -52,7 +52,7 @@ Now create a pipeline on ADO using [azure-pipeline.yaml](./azure-pipeline.yaml) 
 
 Run the pipeline and confirm that the artifact has been generated.
 
-<img src=".assets/artifact.png" width=300 />
+<img src=".assets/artifact.png" width=350 />
 
 ### VM access to ADO
 
