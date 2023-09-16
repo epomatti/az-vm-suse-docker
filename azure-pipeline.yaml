@@ -1,0 +1,29 @@
+trigger:
+  - main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+  - task: CopyFiles@2
+    inputs:
+      Contents: "artifacts/nginx-docker-compose.yaml"
+      TargetFolder: $(build.artifactstagingdirectory)
+  - task: UniversalPackages@0
+    displayName: Publish a Universal Package
+    inputs:
+      command: publish
+      publishDirectory: "$(Build.ArtifactStagingDirectory)"
+      vstsFeedPublish: "myartifacts/mypackages"
+      vstsFeedPackagePublish: "docker-compose"
+      versionOption: custom
+      versionPublish: "1.2.3"
+      packagePublishDescription: "Docker Compose sandbox"
+
+  - task: ArchiveFiles@2
+    inputs:
+      rootFolderOrFile: "$(Build.BinariesDirectory)"
+      includeRootFolder: true
+      archiveType: "zip"
+      archiveFile: "$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip"
+      replaceExistingArchive: true
