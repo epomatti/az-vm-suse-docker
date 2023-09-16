@@ -50,7 +50,11 @@ You must give [`Contributor`][1] permissions for the pipeline to publish package
 
 Now create a pipeline on ADO using [azure-pipeline.yaml](./azure-pipeline.yaml) as a template. Add the variables `projectName` and `feedName` accordingly.
 
-### VM Identity
+Run the pipeline and confirm that the artifact has been generated.
+
+<img src=".assets/artifact.png" width=300 />
+
+### VM access to ADO
 
 When logged into the VM, login with the VM Managed Identity:
 
@@ -60,7 +64,7 @@ az login --identity --allow-no-subscriptions
 
 The Azure DevOps Extension for the CLI is already installed via `userdata`.
 
-
+It is necessary to run additional commands to allow a Managed Identity to connect to Azure DevOps. Follow the [documentation][4] to implemented that.
 
 
 ---
@@ -74,3 +78,4 @@ terraform destroy -auto-approve
 
 [1]: https://learn.microsoft.com/en-us/azure/devops/artifacts/feeds/feed-permissions?view=azure-devops#permissions-table
 [2]: https://learn.microsoft.com/en-us/azure/devops/artifacts/feeds/feed-permissions?view=azure-devops#pipelines-permissions
+[3]: https://learn.microsoft.com/en-us/azure/devops/integrate/get-started/authentication/service-principal-managed-identity?view=azure-devops#q-can-i-use-a-service-principal-or-managed-identity-with-azure-cli
