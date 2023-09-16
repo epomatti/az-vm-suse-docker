@@ -42,7 +42,7 @@ cloud-init status
 
 Create an Artifact Feed of type Universal Packages in an ADO project.
 
-> 💡 For practical implementation of this projects, it is possible to select all members. However, implement minimal privilege in production.
+> 💡 For practical implementation of this project, it is possible to select all members. However, implement minimal privilege in production.
 
 <img src=".assets/feed.png" width=400 />
 
