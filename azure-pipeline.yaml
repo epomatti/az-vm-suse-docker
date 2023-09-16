@@ -14,7 +14,7 @@ steps:
     inputs:
       command: publish
       publishDirectory: "$(Build.ArtifactStagingDirectory)"
-      vstsFeedPublish: "$(projectName)/suse-linux"
+      vstsFeedPublish: "$(projectName)/$(feedName)"
       vstsFeedPackagePublish: "docker-compose"
       versionOption: custom
       versionPublish: "1.2.3"
