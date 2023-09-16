@@ -56,6 +56,8 @@ Run the pipeline and confirm that the artifact has been generated.
 
 ### VM access to ADO
 
+Add the VM System-Assigned identity to Azure DevOps.
+
 When logged into the VM, login with the VM Managed Identity:
 
 ```sh
