@@ -64,7 +64,7 @@ az login --identity --allow-no-subscriptions
 
 The Azure DevOps Extension for the CLI is already installed via `userdata`.
 
-It is necessary to run additional commands to allow a Managed Identity to connect to Azure DevOps. Follow the [documentation][4] to implemented that.
+It is necessary to run additional commands to allow a Managed Identity to connect to Azure DevOps. Follow the [documentation][3] to implemented that.
 
 
 ---
