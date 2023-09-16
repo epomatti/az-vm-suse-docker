@@ -38,6 +38,18 @@ cloud-init status
 
 ## Azure Artifacts
 
+### Azure DevOps setup
+
+Create an Artifact Feed of type Universal Packages in an ADO project.
+
+> 💡 For practical implementation of this projects, it is possible to select all members. However, implement minimal privilege in production.
+
+<img src=".assets/feed.png" width=400 />
+
+
+
+### VM Identity
+
 When logged into the VM, login with the VM Managed Identity:
 
 ```sh
