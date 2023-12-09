@@ -69,6 +69,13 @@ The Azure DevOps Extension for the CLI is already installed via `userdata`.
 It is necessary to run additional commands to allow a Managed Identity to connect to Azure DevOps. Follow the [documentation][3] to implemented that.
 
 
+## CNI
+
+To enable containers with advanced features, such as service endpoints, you need the [CNI][4].
+
+More information on how to [deploy][5] the plugin and the [project][6] on GitHub.
+
+
 ---
 
 ### Clean-up
@@ -81,3 +88,6 @@ terraform destroy -auto-approve
 [1]: https://learn.microsoft.com/en-us/azure/devops/artifacts/feeds/feed-permissions?view=azure-devops#permissions-table
 [2]: https://learn.microsoft.com/en-us/azure/devops/artifacts/feeds/feed-permissions?view=azure-devops#pipelines-permissions
 [3]: https://learn.microsoft.com/en-us/azure/devops/integrate/get-started/authentication/service-principal-managed-identity?view=azure-devops#q-can-i-use-a-service-principal-or-managed-identity-with-azure-cli
+[4]: https://learn.microsoft.com/en-us/azure/virtual-network/container-networking-overview
+[5]: https://learn.microsoft.com/en-us/azure/virtual-network/deploy-container-networking#download-and-install-the-plug-in
+[6]: https://github.com/Azure/azure-container-networking?tab=readme-ov-file
