@@ -1,0 +1,13 @@
+{
+    "version": "0.2",
+    "ignorePaths": [],
+    "dictionaryDefinitions": [],
+    "dictionaries": [],
+    "words": [
+        "suse",
+        "suseadmin",
+        "userdata"
+    ],
+    "ignoreWords": [],
+    "import": []
+}
