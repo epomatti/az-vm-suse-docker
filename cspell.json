@@ -4,9 +4,12 @@
     "dictionaryDefinitions": [],
     "dictionaries": [],
     "words": [
+        "journalctl",
+        "nginx",
         "suse",
         "suseadmin",
-        "userdata"
+        "userdata",
+        "zypper"
     ],
     "ignoreWords": [],
     "import": []

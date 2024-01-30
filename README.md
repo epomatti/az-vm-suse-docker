@@ -75,6 +75,68 @@ To enable containers with advanced features, such as service endpoints, you need
 
 More information on how to [deploy][5] the plugin and the [project][6] on GitHub.
 
+## Crontab (SUSE 12)
+
+Following [tutorial 1][7] and [tutorial 2][8], install Nginx.
+
+> This was tested on SUSE 12 only
+
+Prepare the installation:
+
+```sh
+sudo zypper addrepo -G -t yum -c 'http://nginx.org/packages/sles/12' nginx
+wget http://nginx.org/keys/nginx_signing.key
+sudo rpm --import nginx_signing.key
+```
+
+Install Nginx:
+
+```sh
+sudo zypper install nginx
+```
+
+Commands to control Nginx:
+
+```sh
+sudo systemctl start nginx
+sudo systemctl restart nginx
+sudo systemctl stop nginx
+sudo systemctl status nginx
+```
+
+Instead of enabling the service directly, let's configure a `crontab`.
+
+Create a file named `/opt/start-nginx.sh`:
+
+```sh
+echo "Starting NGINX"
+sudo systemctl start nginx
+echo "Completed starting NGINX"
+```
+
+Add the required permissions:
+
+```sh
+chmod +x /opt/start-nginx.sh
+```
+
+Edit the `crontab`:
+
+```sh
+crontab -e
+```
+
+Set the script path:
+
+```sh
+@reboot /opt/start-nginx.sh
+```
+
+Crontab logs can be view with the journal:
+
+```sh
+journalctl --no-hostname --output=short-precise | grep -i cron
+```
 
 ---
 
@@ -91,3 +153,5 @@ terraform destroy -auto-approve
 [4]: https://learn.microsoft.com/en-us/azure/virtual-network/container-networking-overview
 [5]: https://learn.microsoft.com/en-us/azure/virtual-network/deploy-container-networking#download-and-install-the-plug-in
 [6]: https://github.com/Azure/azure-container-networking?tab=readme-ov-file
+[7]: https://www.cyberciti.biz/faq/install-and-use-nginx-on-opensuse-linux/
+[8]: https://www.cyberciti.biz/faq/how-to-install-nginx-on-suse-linux-enterprise-server-12/
