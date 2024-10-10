@@ -143,6 +143,23 @@ Crontab logs can be view with the journal:
 journalctl --no-hostname --output=short-precise | grep -i cron
 ```
 
+## Proxy
+
+Immediatelly using `dig` to resove the storage IP address should return a public IP granted by Private Link integration.
+
+```sh
+dig stsuse82913.blob.core.windows.net
+```
+
+It is also expected to resolve to the public IP using an external DNS.
+
+```sh
+dig @8.8.8.8 stsuse82913.blob.core.windows.net
+```
+
+
+
+
 ---
 
 ### Clean-up

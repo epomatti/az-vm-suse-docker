@@ -2,6 +2,10 @@ variable "subscription_id" {
   type = string
 }
 
+variable "allowed_public_ips" {
+  type = list(string)
+}
+
 variable "location" {
   type = string
 }

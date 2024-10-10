@@ -10,3 +10,7 @@ output "vm_ssh_command" {
 output "primary_blob_endpoint" {
   value = module.storage.primary_blob_endpoint
 }
+
+output "hello_blob_url" {
+  value = module.storage.hello_blob_url
+}

@@ -41,6 +41,7 @@ module "storage" {
   workload            = local.workload
   location            = azurerm_resource_group.main.location
   resource_group_name = azurerm_resource_group.main.name
+  allowed_public_ips  = var.allowed_public_ips
 }
 
 module "private_endpoints" {

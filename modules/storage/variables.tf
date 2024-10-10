@@ -10,6 +10,6 @@ variable "workload" {
   type = string
 }
 
-# variable "allowed_public_ips" {
-#   type = list(string)
-# }
+variable "allowed_public_ips" {
+  type = list(string)
+}
