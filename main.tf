@@ -7,6 +7,10 @@ terraform {
   }
 }
 
+locals {
+  workload = "suse"
+}
+
 resource "azurerm_resource_group" "main" {
   name     = "rg-suse"
   location = var.location
@@ -14,7 +18,7 @@ resource "azurerm_resource_group" "main" {
 
 module "network" {
   source   = "./modules/network"
-  sys      = "suse"
+  sys      = local.workload
   location = azurerm_resource_group.main.location
   group    = azurerm_resource_group.main.name
 }
@@ -30,4 +34,11 @@ module "vm_linux" {
   sku           = var.vm_sku
   vm_version    = var.vm_version
   userdata_file = var.vm_userdata_file
+}
+
+module "storage" {
+  source              = "./modules/storage"
+  workload            = local.workload
+  location            = azurerm_resource_group.main.location
+  resource_group_name = azurerm_resource_group.main.name
 }

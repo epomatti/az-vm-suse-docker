@@ -6,3 +6,7 @@ output "vm_identity" {
 output "vm_ssh_command" {
   value = "ssh -i modules/suse/id_rsa suseadmin@${module.vm_linux.public_ip_address}"
 }
+
+output "primary_blob_endpoint" {
+  value = module.storage.primary_blob_endpoint
+}

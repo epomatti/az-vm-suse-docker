@@ -46,6 +46,13 @@ resource "azurerm_subnet" "main" {
   address_prefixes     = ["10.0.1.0/24"]
 }
 
+resource "azurerm_subnet" "private_endpoint" {
+  name                 = "subnet-private-endpoints"
+  resource_group_name  = var.group
+  virtual_network_name = azurerm_virtual_network.main.name
+  address_prefixes     = ["10.0.90.0/24"]
+}
+
 resource "azurerm_subnet_network_security_group_association" "main" {
   subnet_id                 = azurerm_subnet.main.id
   network_security_group_id = azurerm_network_security_group.main.id
