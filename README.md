@@ -194,11 +194,14 @@ Proxy configuration can be global or single user ([SUSE documentation][10]).
 
 For global `/etc/sysconfig/proxy`:
 
+> [!IMPORTANT]
+> For `NO_PROXY`, the wildcard character is `.`.
+
 ```sh
 PROXY_ENABLED="yes"
 HTTP_PROXY="http://192.168.0.1:3128"
 HTTPS_PROXY="http://192.168.0.1:3128"
-NO_PROXY="localhost, 127.0.0.1, *.blob.core.windows.net"
+NO_PROXY="localhost, 127.0.0.1, .blob.core.windows.net"
 ```
 
 For single user, such as in `.bashrc`:
@@ -206,7 +209,7 @@ For single user, such as in `.bashrc`:
 ```sh
 export http_proxy="http://192.168.0.1:3128"
 export https_proxy="http://192.168.0.1:3128"
-export no_proxy="localhost, 127.0.0.1, *.blob.core.windows.net"
+export no_proxy="localhost, 127.0.0.1, .blob.core.windows.net"
 ```
 
 ### Proxy exceptions
@@ -222,6 +225,9 @@ When using docker, consider the [AllowList][11]. Example: `hub.docker.com`, `reg
 ### Docker proxy
 
 Configuration can be done for the _CLI_ and for the _daemon_.
+
+> [!IMPORTANT]
+> In the Docker configuration, the wildcard character is `*`.
 
 For the [CLI][12] on file `~/.docker/config.json`:
 
