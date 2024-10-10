@@ -145,6 +145,8 @@ journalctl --no-hostname --output=short-precise | grep -i cron
 
 ## Proxy
 
+### DNS checking
+
 Immediatelly using `dig` to resove the storage IP address should return a public IP granted by Private Link integration.
 
 ```sh
@@ -156,6 +158,8 @@ It is also expected to resolve to the public IP using an external DNS.
 ```sh
 dig @8.8.8.8 stsuse82913.blob.core.windows.net
 ```
+
+### Get blob script
 
 Copy the `getblob.sh` template file:
 
@@ -171,6 +175,85 @@ Test the script:
 bash getblob.sh
 ```
 
+### Proxy configuration
+
+To force `curl` through a proxy, use the `-x` command:
+
+> [!TIP]
+> Once the proxy is set in Linux, `curl` will pickup the configuration automatically. To force no proxy, use the command `-noproxy`.
+
+```sh
+-x "http://43.153.208.148:3128"
+```
+
+Create a proxy for testing, or use a [free option][9].
+
+### Linux proxy
+
+Proxy configuration can be global or single user ([SUSE documentation][10]).
+
+For global `/etc/sysconfig/proxy`:
+
+```sh
+PROXY_ENABLED="yes"
+HTTP_PROXY="http://192.168.0.1:3128"
+HTTPS_PROXY="http://192.168.0.1:3128"
+NO_PROXY="localhost, 127.0.0.1, *.blob.core.windows.net"
+```
+
+For single user, such as in `.bashrc`:
+
+```sh
+export http_proxy="http://192.168.0.1:3128"
+export https_proxy="http://192.168.0.1:3128"
+export no_proxy="localhost, 127.0.0.1, *.blob.core.windows.net"
+```
+
+### Proxy exceptions
+
+When using private connections or trusted services, proxy exceptions can configured.
+
+These are typically defined in "no proxy" configuration values.
+
+For example, Microsoft Azure services connected via Private Link, such as `*.blob.core.windows.net` and `.azurecr.io`.
+
+When using docker, consider the [AllowList][11]. Example: `hub.docker.com`, `registry-1.docker.io`, and `production.cloudflare.docker.com`.
+
+### Docker proxy
+
+Configuration can be done for the _CLI_ and for the _daemon_.
+
+For the [CLI][12] on file `~/.docker/config.json`:
+
+```json
+{
+ "proxies": {
+   "default": {
+     "httpProxy": "http://proxy.example.com:3128",
+     "httpsProxy": "https://proxy.example.com:3129",
+     "noProxy": "*.test.example.com,.example.org,127.0.0.0/8"
+   }
+ }
+}
+```
+
+For the [daemon][12] on file `daemon.json`, of which the location [can vary][14]:
+
+```json
+{
+  "proxies": {
+    "http-proxy": "http://proxy.example.com:3128",
+    "https-proxy": "https://proxy.example.com:3129",
+    "no-proxy": "*.test.example.com,.example.org,127.0.0.0/8"
+  }
+}
+```
+
+After changing the configuration file, restart the daemon:
+
+```sh
+sudo systemctl restart docker
+```
 ---
 
 ### Clean-up
@@ -188,3 +271,9 @@ terraform destroy -auto-approve
 [6]: https://github.com/Azure/azure-container-networking?tab=readme-ov-file
 [7]: https://www.cyberciti.biz/faq/install-and-use-nginx-on-opensuse-linux/
 [8]: https://www.cyberciti.biz/faq/how-to-install-nginx-on-suse-linux-enterprise-server-12/
+[9]: https://hide.mn/en/proxy-list/
+[10]: https://www.suse.com/support/kb/doc/?id=000017441
+[11]: https://docs.docker.com/desktop/allow-list/
+[12]: https://docs.docker.com/engine/cli/proxy/
+[13]: https://docs.docker.com/engine/daemon/proxy/
+[14]: https://docs.docker.com/engine/daemon/#configuration-file
