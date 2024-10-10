@@ -17,7 +17,7 @@ Create the `.auto.tfvars` file from the template:
 cp templates/suse(15|12).auto.tfvars .auto.tfvars
 ```
 
-Set the `subscription_id` variable.
+Set the `subscription_id` and the `allowed_public_ips` variables.
 
 > [!TIP]
 > Check for updates to packages installed via cloud-init user data
@@ -157,8 +157,19 @@ It is also expected to resolve to the public IP using an external DNS.
 dig @8.8.8.8 stsuse82913.blob.core.windows.net
 ```
 
+Copy the `getblob.sh` template file:
 
+```sh
+cp templates/getblob.sh getblob.sh
+```
 
+Edit the `storage_account` and `access_key` variables.
+
+Test the script:
+
+```sh
+bash getblob.sh
+```
 
 ---
 
