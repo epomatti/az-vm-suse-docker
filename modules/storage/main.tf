@@ -14,8 +14,8 @@ resource "azurerm_storage_account" "default" {
   https_traffic_only_enabled = true
   min_tls_version            = "TLS1_2"
 
-  # Further controlled by network_rules below
-  public_network_access_enabled = true
+  # If true, will be further controlled by network_rules below
+  public_network_access_enabled = false
 
   network_rules {
     default_action = "Deny"
