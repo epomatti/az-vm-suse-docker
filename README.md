@@ -17,6 +17,8 @@ Create the `.auto.tfvars` file from the template:
 cp templates/suse(15|12).auto.tfvars .auto.tfvars
 ```
 
+Set the `subscription_id` variable.
+
 Create the resources:
 
 ```sh

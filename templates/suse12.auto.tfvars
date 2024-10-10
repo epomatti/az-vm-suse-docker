@@ -1,3 +1,4 @@
+subscription_id  = ""
 location         = "eastus"
 vm_size          = "Standard_B2s"
 vm_publisher     = "SUSE"
