@@ -27,7 +27,7 @@ resource "azurerm_private_endpoint" "blob" {
 
   private_service_connection {
     name                           = "blob"
-    private_connection_resource_id = var.storage_id
+    private_connection_resource_id = var.storage_account_id
     is_manual_connection           = false
     subresource_names              = ["blob"]
   }

@@ -42,3 +42,12 @@ module "storage" {
   location            = azurerm_resource_group.main.location
   resource_group_name = azurerm_resource_group.main.name
 }
+
+module "private_endpoints" {
+  source              = "./modules/private-endpoints"
+  location            = azurerm_resource_group.main.location
+  resource_group_name = azurerm_resource_group.main.name
+  vnet_id             = module.network.vnet_id
+  subnet_id           = module.network.private_endpoints_subnet_id
+  storage_account_id  = module.storage.storage_account_id
+}

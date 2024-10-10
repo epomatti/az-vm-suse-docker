@@ -14,6 +14,6 @@ variable "subnet_id" {
   type = string
 }
 
-variable "storage_id" {
+variable "storage_account_id" {
   type = string
 }
