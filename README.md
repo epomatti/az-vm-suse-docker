@@ -19,6 +19,9 @@ cp templates/suse(15|12).auto.tfvars .auto.tfvars
 
 Set the `subscription_id` variable.
 
+> [!TIP]
+> Check for updates to packages installed via cloud-init user data
+
 Create the resources:
 
 ```sh
