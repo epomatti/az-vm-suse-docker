@@ -233,7 +233,7 @@ As it is stated in the [documentation][15], proxy-related environment variables 
 
 > When you start a container, its proxy-related environment variables are set to reflect your proxy configuration in `~/.docker/config.json`
 
-This should have unintended consequences when using wildwards.
+This could have unintended consequences when using wildwards.
 
 > [!IMPORTANT]
 > In the Docker configuration, the wildcard character is `*`. This can break the Linux proxy as it does not support wildcard with `*`, only starting with `.` will work.
