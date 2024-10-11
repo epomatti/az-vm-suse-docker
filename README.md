@@ -14,13 +14,13 @@ Create the `.auto.tfvars` file from the template:
 
 ```sh
 # Choose your distro
-cp templates/suse(15|12).auto.tfvars .auto.tfvars
+cp templates/suse(12|15).auto.tfvars .auto.tfvars
 ```
 
 Set the `subscription_id` and the `allowed_public_ips` variables.
 
 > [!TIP]
-> Check for updates to packages installed via cloud-init user data
+> Check for available updates to packages installed via `cloud-init` and update the scripts.
 
 Create the resources:
 
@@ -84,6 +84,7 @@ More information on how to [deploy][5] the plugin and the [project][6] on GitHub
 
 Following [tutorial 1][7] and [tutorial 2][8], install Nginx.
 
+> [!NOTE]
 > This was tested on SUSE 12 only
 
 Prepare the installation:
