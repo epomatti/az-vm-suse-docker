@@ -188,6 +188,9 @@ To force `curl` through a proxy, use the `-x` command:
 
 Create a proxy for testing, or use a [free option][9].
 
+> [!CAUTION]
+> If using a free proxy, do not use real credentials while testing.
+
 ### Linux proxy
 
 Proxy configuration can be global or single user ([SUSE documentation][10]).
@@ -199,16 +202,16 @@ For global `/etc/sysconfig/proxy`:
 
 ```sh
 PROXY_ENABLED="yes"
-HTTP_PROXY="http://192.168.0.1:3128"
-HTTPS_PROXY="http://192.168.0.1:3128"
+HTTP_PROXY="http://43.153.208.148:3128"
+HTTPS_PROXY="http://43.153.208.148:3128"
 NO_PROXY="localhost, 127.0.0.1, .blob.core.windows.net"
 ```
 
 For single user, such as in `.bashrc`:
 
 ```sh
-export http_proxy="http://192.168.0.1:3128"
-export https_proxy="http://192.168.0.1:3128"
+export http_proxy="http://43.153.208.148:3128"
+export https_proxy="http://43.153.208.148:3128"
 export no_proxy="localhost, 127.0.0.1, .blob.core.windows.net"
 ```
 
@@ -235,9 +238,9 @@ For the [CLI][12] on file `~/.docker/config.json`:
 {
  "proxies": {
    "default": {
-     "httpProxy": "http://proxy.example.com:3128",
-     "httpsProxy": "https://proxy.example.com:3129",
-     "noProxy": "*.test.example.com,.example.org,127.0.0.0/8"
+     "httpProxy": "http://43.153.208.148:3128",
+     "httpsProxy": "http://43.153.208.148:3128",
+     "noProxy": "127.0.0.0/8,*.blob.core.windows.net,*.docker.com,*.docker.io,*.cloudflare.docker.com"
    }
  }
 }
@@ -248,9 +251,9 @@ For the [daemon][12] on file `daemon.json`, of which the location [can vary][14]
 ```json
 {
   "proxies": {
-    "http-proxy": "http://proxy.example.com:3128",
-    "https-proxy": "https://proxy.example.com:3129",
-    "no-proxy": "*.test.example.com,.example.org,127.0.0.0/8"
+    "http-proxy": "http://43.153.208.148:3128",
+    "https-proxy": "http://43.153.208.148:3128",
+    "no-proxy": "127.0.0.0/8,*.blob.core.windows.net,*.docker.com,*.docker.io,*.cloudflare.docker.com"
   }
 }
 ```
@@ -260,6 +263,43 @@ After changing the configuration file, restart the daemon:
 ```sh
 sudo systemctl restart docker
 ```
+
+### Docker testing
+
+You'll need to log in to Docker Hub.
+
+> ![IMPORTANT]
+> Prefer using a PAT for testing, and delete it later. Or use a custom proxy.
+
+```sh
+docker login -u <username>
+```
+
+Pull the image for testing:
+
+```sh
+docker pull ubuntu
+```
+
+Connect iteratively to the container:
+
+```sh
+# Run it
+docker run -i -t ubuntu bash
+
+# If needed, reconnect
+docker start containername
+docker attach containername
+```
+
+Install the required tools:
+
+```sh
+apt update && apt install -y dnsutils vim nano curl openssl
+```
+
+Test again using the [getblosh.sh](/templates/getblob.sh) script template.
+
 ---
 
 ### Clean-up
