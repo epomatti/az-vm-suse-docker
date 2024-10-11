@@ -268,7 +268,7 @@ sudo systemctl restart docker
 
 You'll need to log in to Docker Hub.
 
-> ![IMPORTANT]
+> [!IMPORTANT]
 > Prefer using a PAT for testing, and delete it later. Or use a custom proxy.
 
 ```sh
