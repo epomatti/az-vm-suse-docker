@@ -229,8 +229,14 @@ When using docker, consider the [AllowList][11]. Example: `hub.docker.com`, `reg
 
 Configuration can be done for the _CLI_ and for the _daemon_.
 
+As it is stated in the [documentation][15], proxy-related environment variables are automatically copied:
+
+> When you start a container, its proxy-related environment variables are set to reflect your proxy configuration in `~/.docker/config.json`
+
+This should have unintended consequences when using wildwards.
+
 > [!IMPORTANT]
-> In the Docker configuration, the wildcard character is `*`.
+> In the Docker configuration, the wildcard character is `*`. This can break the Linux proxy as it does not support wildcard with `*`, only starting with `.` will work.
 
 For the [CLI][12] on file `~/.docker/config.json`:
 
@@ -323,3 +329,4 @@ terraform destroy -auto-approve
 [12]: https://docs.docker.com/engine/cli/proxy/
 [13]: https://docs.docker.com/engine/daemon/proxy/
 [14]: https://docs.docker.com/engine/daemon/#configuration-file
+[15]: https://docs.docker.com/engine/cli/proxy/#run-containers-with-a-proxy-configuration
