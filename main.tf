@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "4.4.0"
+      version = "4.14.0"
     }
   }
 }
@@ -12,7 +12,7 @@ locals {
 }
 
 resource "azurerm_resource_group" "main" {
-  name     = "rg-suse"
+  name     = "rg-${local.workload}"
   location = var.location
 }
 
