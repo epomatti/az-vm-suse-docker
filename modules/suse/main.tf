@@ -58,6 +58,10 @@ resource "azurerm_linux_virtual_machine" "main" {
     sku       = var.sku
     version   = var.vm_version
   }
+
+  lifecycle {
+    ignore_changes = [custom_data]
+  }
 }
 
 ### Adding some permissions avoid this error message when using the CLI:
