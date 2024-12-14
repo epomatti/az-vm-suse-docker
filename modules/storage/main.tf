@@ -45,7 +45,7 @@ resource "azurerm_role_assignment" "storage_blob_data_owner" {
 
 resource "azurerm_storage_container" "files" {
   name                  = "files"
-  storage_account_name  = azurerm_storage_account.default.name
+  storage_account_id    = azurerm_storage_account.default.id
   container_access_type = "private"
 }
 
