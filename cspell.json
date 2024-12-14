@@ -6,9 +6,11 @@
     "words": [
         "journalctl",
         "nginx",
+        "sles",
         "suse",
         "suseadmin",
         "userdata",
+        "vnet",
         "zypper"
     ],
     "ignoreWords": [],

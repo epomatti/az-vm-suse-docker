@@ -1,17 +1,25 @@
 #!/bin/sh
 
-sudo zypper refresh
+zypper refresh
 
+
+### Install Azure CLI
 # Azure CLI
-sudo zypper install -y azure-cli
-sudo az extension add --name azure-devops -y
+zypper install -y azure-cli
+az extension add --name azure-devops -y
+
+### Install Docker
+suse_major=15
+suse_minor=6
+suse_release=$suse_major.$suse_minor
+suse_architecture=x86_64
 
 # Docker
-sudo SUSEConnect -p sle-module-containers/15/x86_64 -r ''
-sudo zypper install -y docker
-sudo systemctl enable docker.service
-sudo systemctl start docker.service
+SUSEConnect -p sle-module-containers/$suse_major/$suse_architecture -r ''
+zypper install -y docker
+systemctl enable docker.service
+systemctl start docker.service
 
 # Docker Compose
-sudo SUSEConnect -p PackageHub/15.5/x86_64
-sudo zypper install -y docker-compose
+SUSEConnect -p PackageHub/$suse_release/$suse_architecture
+zypper install -y docker-compose

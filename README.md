@@ -14,7 +14,7 @@ Create the `.auto.tfvars` file from the template:
 
 ```sh
 # Choose your distro
-cp templates/suse(12|15).auto.tfvars .auto.tfvars
+cp templates/suse(15|12).auto.tfvars .auto.tfvars
 ```
 
 Set the `subscription_id` and the `allowed_public_ips` variables.
