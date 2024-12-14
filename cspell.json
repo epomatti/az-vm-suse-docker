@@ -4,8 +4,10 @@
     "dictionaryDefinitions": [],
     "dictionaries": [],
     "words": [
+        "jdbc",
         "journalctl",
         "nginx",
+        "sdkman",
         "sles",
         "suse",
         "suseadmin",

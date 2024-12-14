@@ -73,6 +73,74 @@ The Azure DevOps Extension for the CLI is already installed via `userdata`.
 
 It is necessary to run additional commands to allow a Managed Identity to connect to Azure DevOps. Follow the [documentation][3] to implemented that.
 
+### Universal packages
+
+Configuration will be performed with the [Azure CLI DevOps extension][19].
+
+#### Interactive login
+
+Preferably for this operation, use the interactive Azure CLI login:
+
+```sh
+az login
+```
+
+Optionally, this can also be set:
+
+```sh
+az devops configure --defaults organization=<your-org-url> project=<your-project-name>
+```
+
+#### Service principal login
+
+It is possible to connect from the VM to ADO using Managed Identities with a [connected tenant][18].
+
+<img src=".assets/ado-serviceprincipal.png" />
+
+To login with such identity, use a variation of the `az login` command:
+
+```sh
+az login --identity --allow-no-subscriptions
+```
+
+### Upstream sources
+
+Using [upstream sources][16] it is possible to store packages from various sources in a single feed.
+
+Follow the procure on how to [set up upstream sources][17] for this configuration.
+
+> [!TIP]
+> If you don't need all of the upstream sources, remove them from the feed.
+
+The requirements for this approach (using Maven) are:
+
+- Java 
+- Maven
+- Personal Access Token (PAT) with minimal permissions
+- Maven `settings.xml` setup
+
+The Maven `settings.xml` configuration should look like this:
+
+```xml
+<servers>
+    <server>
+        <id>azure-devops-feed-id</id>
+        <username>anything</username>
+        <password>YOUR_PERSONAL_ACCESS_TOKEN</password>
+    </server>
+</servers>
+```
+
+Set the `-DrepoUrl` value, and run the command:
+
+```sh
+mvn dependency:get \
+    -DrepoUrl=<repository-url> \
+    -Dartifact="com.microsoft.sqlserver:mssql-jdbc:12.8.1.jre11" \
+```
+
+The downloaded JAR will be available at the `~/.m2/repository` location.
+
 
 ## CNI
 
@@ -331,3 +399,7 @@ terraform destroy -auto-approve
 [13]: https://docs.docker.com/engine/daemon/proxy/
 [14]: https://docs.docker.com/engine/daemon/#configuration-file
 [15]: https://docs.docker.com/engine/cli/proxy/#run-containers-with-a-proxy-configuration
+[16]: https://learn.microsoft.com/en-us/azure/devops/artifacts/concepts/upstream-sources?view=azure-devops
+[17]: https://learn.microsoft.com/en-us/azure/devops/artifacts/how-to/set-up-upstream-sources?view=azure-devops&tabs=maven
+[18]: https://learn.microsoft.com/en-us/azure/devops/integrate/get-started/authentication/service-principal-managed-identity?view=azure-devops
+[19]: https://learn.microsoft.com/en-us/azure/devops/cli/?view=azure-devops
